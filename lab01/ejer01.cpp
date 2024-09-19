@@ -33,18 +33,28 @@ bool esNumValido(const string &str){
 }
 int main(){
     char seguir = 's';
-    while (tolower(seguir) == 's'){
-        int num;
-        cout << "''''''''''''''''INGRESE UN NUMERO ''''''''''''''''" << endl;
-        cin >> num;
-        
-        if(esAnstrong(num))
-            cout << "El numero ingresado es cubo perfecto" << endl;
-        else
-            cout << "El numero ingresado NO es cubo perfecto" << endl;
+    string str;
 
+    while (tolower(seguir) == 's'){
+        int num = 0;
+        cout << "''''''''''''''''INGRESE UN NUMERO ''''''''''''''''" << endl;
+        getline(cin, str);
+        
+        if(esNumValido(str)){
+            stringstream ss(str);
+            ss >> num;
+            
+            if(esAnstrong(num))
+                cout << "El numero ingresado es cubo perfecto" << endl;
+            else
+                cout << "El numero ingresado NO es cubo perfecto" << endl;
+
+        }else{
+            cout << "El valor ingresado no es un numero valido" << endl;
+        }
         cout << "Desea ingresar otro numero? (s/n)" << endl;
         cin >> seguir;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     return 0;
