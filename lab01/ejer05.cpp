@@ -4,6 +4,9 @@
 
 using namespace std;
 
+void imprimirOpciones(); //funcion de opciones
+bool buscarProducto(); //funcion de busqueda de producto
+
 //clase producto
 class Producto{
     private:
@@ -87,22 +90,105 @@ class BilleteraElectronica {
         }       
 };
 
+int buscarProducto(vector<Producto> productos, string nombre){
+    for(int i = 0; i < productos.size(); i++){
+        if(productos[i].getNombre() == nombre){
+            return i;
+        }
+    }
+    return -1;
+}
+
+void imprimirOpciones(){
+    cout << "Seleccione una opcion: " << endl;
+    cout << "1. Agregar Fondos" << endl;
+    cout << "2. Retirar Fondos" << endl;
+    cout << "3. Agregar Producto al Carrito" << endl;
+    cout << "4. Remover Producto del Carrito" << endl;
+    cout << "5. Realizar Compra" << endl;
+    cout << "6. Consultar Saldo" << endl;
+    cout << "7. Salir" << endl;
+    cout << ">>>>>>>> ";
+}
+
 int main(){
-    Producto p1("Papas", 10);
-    Producto p2("Coca", 5);
-    Producto p3("Chocolatina", 2);
+    //Menu
+    int opcion = 0;
+    int i = 0;
+    string nombre;
+    BilleteraElectronica b(0);
 
-    BilleteraElectronica b(100);
-    b.agregarAlCarrito(p1);
-    b.agregarAlCarrito(p2);
-    b.agregarAlCarrito(p3);
+    //Producto ya definidos
+    vector <Producto> productos = {
+        Producto("Papas", 10),
+        Producto("Coca", 5),
+        Producto("Chocolatina", 2),
+        Producto("Galletas", 3),
+        Producto("Chicles", 1)
+    };
 
-    cout << "Saldo: " << b.consultarSaldo() << endl;
-    
-    b.realizarCompra();
+    cout << "BIENVENIDO AL SISTEMA" << endl;
+    while (opcion != 7){
+        imprimirOpciones();
+        cin >> opcion;
 
-    cout << "Numero de productos comprados: " << b.obtenerNumeroProductosComprados() << endl;
-    cout << "Saldo Actualizado: " << b.consultarSaldo() << endl;
+        switch(opcion){
+            case 1:
+                float fondos;
+                cout << "Ingrese la cantidad de fondos a agregar: ";
+                cin >> fondos;
+                b.agregarFondos(fondos);
+                break;
+            case 2:
+                float retiro;
+                cout << "Ingrese la cantidad de fondos a retirar: ";
+                cin >> retiro;
+                if(b.retirarFondos(retiro)){
+                    cout << "Retiro exitoso" << endl;
+                }else{
+                    cout << "Fondos insuficientes" << endl;
+                }
+                break;
+            case 3:
+                float precio;
+                cout << "Ingrese el nombre del producto: ";
+                cin >> nombre;
+                i = buscarProducto(productos, nombre);
+                if ( i != -1){
+                    b.agregarAlCarrito(productos[i]);
+                }else{
+                    cout << "Producto no encontrado" << endl;
+                }                 
+                break;
+            case 4:
+                cout << "Ingrese el nombre del producto a remover: ";
+                cin >> nombre;
+                i = buscarProducto(productos, nombre);
+                if ( i != -1){
+                    b.removerDelCarrito(productos[i]);
+                }else{
+                    cout << "Producto no encontrado" << endl;
+                }
+                break;
+            case 5:
+                if(b.realizarCompra()){
+                    cout << "Compra realizada con exito" << endl;
+                }else{
+                    cout << "Fondos insuficientes" << endl;
+                }
+                break;
+            case 6:
+                cout << "Saldo: " << b.consultarSaldo() << endl;
+                break;
+            case 7:
+                cout << "Gracias por usar el sistema" << endl;
+                break;
+            default:
+                cout << "Opcion invalida" << endl;
+                break;
+        }
+        
+    }
 
     return 0;
 }
