@@ -10,10 +10,32 @@ class Analizador{
         string operacion;
         
     public:
-        Analizador(string operacion){
-            this->operacion = operacion;    
-        }
+        Analizador(const string& operacion){
+            this->operacion = operacion;
+        } 
 
+        vector<string> obtenerElementos() {
+            vector<string> elementos;
+            string elemento;
+
+            for (char c : operacion) {
+                if (c == '+' || c == '-' || c == '*' || c == '/') {
+                    if (!elemento.empty()) {
+                        elementos.push_back(elemento);
+                        elemento.clear();
+                    }
+                    elementos.push_back(string(1, c)); // Agregar el operador
+                } else {
+                    elemento += c; // Acumular el operando
+                }
+            }
+
+            if (!elemento.empty()) {
+                elementos.push_back(elemento); // Agregar el último operando
+            }
+
+            return elementos;
+        }
 };
 
 // clase para administrar la operacion matematica
