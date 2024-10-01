@@ -85,35 +85,41 @@ class Calculadora{
 // clase para procesar la operacion matematica
 class Procesador{
     private:
-        Analizador analizador;
-        Calculadora calculadora;
+        Analizador* analizador;
+        Calculadora* calculadora;
 
     public:
-        Procesador(const string& operacion) : analizador(operacion) {}
+        Procesador(const string& operacion){
+            analizador = new Analizador(operacion);
+            calculadora = new Calculadora();
+        }
+        // liberar memoria
+        ~Procesador() {
+            delete analizador;
+            delete calculadora; 
+        }
 
         double procesar() {
-            vector<string> elementos = analizador.obtenerElementos();
-            double resultado = stod(elementos[0]);
-
-            if (elementos.size() < 3 || elementos.size() > 13) { //teniendo en cuenta lo que nos pide el ejercicio
+            vector<string> elementos = analizador->obtenerElementos();
+            if (elementos.size() < 3 || elementos.size() > 13) {
                 throw invalid_argument("Se necesitan entre 2 y 6 números y al menos 1 operador.");
             }
 
-            return calculadora.evaluar(elementos); // para la prioridad
+            return calculadora->evaluar(elementos); // para la prioridad
         }
 };
 
 int main() {
     string operacion;
     cout << "Bienvenido a la calculadora." << endl;
-    cout << "Ingrese la operación matematica (maximo 6 números). Escriba 'salir' para terminar." << endl;
+    cout << "Ingrese la operacion matematica (maximo 6 numeros). Escriba 'salir' para terminar." << endl;
 
     while (true) {
         cout << "Ingrese la operacion: ";
         getline(cin, operacion);
 
         if (operacion == "salir") {
-            cout << "Gracias por usar la calculadora. ¡Hasta luego!" << endl;
+            cout << "CHAU" << endl;
             break; // Salir del bucle
         }
 
