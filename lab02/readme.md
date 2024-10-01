@@ -1,4 +1,4 @@
-# Laboratorio 01 - C++
+# Laboratorio 02 - C++
 
 Este repositorio contiene los ejercicios del Laboratorio 02 de C++.
 
