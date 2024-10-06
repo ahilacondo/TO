@@ -1,11 +1,13 @@
 # Laboratorio 01 - C++
 
-Este repositorio contiene los ejercicios del Laboratorio 02 de C++.
+Este repositorio contiene los ejercicios del Laboratorio 01 de C++.
 
 ## Contenido del repositorio
 
-- **ejer01.cpp**: Implementar una calculadora con 3 clases en C++, donde la primera analizará la operación matemática, la segunda administrará las operaciones matemáticas y la tercera procesará la operación ingresada.
-- **ejer02.cpp**: Implementar, utilizando punteros, una lista doblemente enlazada. Puedes usar clases o structs para representar los nodos de la lista.
+- **ejer01.cpp**: Encuentra el valor máximo de 2 números.
+- **ejer02.cpp**: Calcula el resultado de la función f(x) = x * x + 2.
+- **ejer03.cpp**: Imprime los valores de un bucle desde "i" hasta "n".
+- **ejer05.cpp**: Simula una billetera electrónica con una clase.
 
 ## Cómo ejecutar los archivos
 
@@ -16,7 +18,7 @@ Este repositorio contiene los ejercicios del Laboratorio 02 de C++.
 
 2. Navega a la carpeta donde están los archivos:
    ```bash
-   cd lab02
+   cd lab01
    ```
 
 3. Compila y ejecuta cualquier archivo C++ usando el compilador g++. Por ejemplo, para ejecutar `ejer01.cpp`:
