@@ -2,50 +2,50 @@
 #include <memory>
 
 // Default constructor
-Rectangulo::Rectangulo() {
+Rectangulo::Rectangulo() 
+    : miancho(std::make_unique<USHORT>(10)), 
+      mialto(std::make_unique<USHORT>(2)), 
+      val1(std::make_unique<int>(0)), 
+      val2(std::make_unique<int>(0)), 
+      val3(std::make_unique<int>(0)) {
     cout << "Constructor por defecto\n";
-    miancho = new USHORT(10);
-    mialto = new USHORT(2);
-    val1 = new int(0); 
-    val2 = new int(0); 
-    val3 = new int(0);
 }
 
 // Parameterized constructor
-Rectangulo::Rectangulo(USHORT ancho, USHORT alto) {
+Rectangulo::Rectangulo(USHORT ancho, USHORT alto) 
+    : miancho(std::make_unique<USHORT>(ancho)), 
+      mialto(std::make_unique<USHORT>(alto)), 
+      val1(std::make_unique<int>(0)), 
+      val2(std::make_unique<int>(0)), 
+      val3(std::make_unique<int>(0)) {
     cout << "Constructor normal\n";
-    miancho = new USHORT(ancho); 
-    mialto = new USHORT(alto);  
-    val1 = new int(0); 
-    val2 = new int(0); 
-    val3 = new int(0);
 }
 
 // Copy constructor
-Rectangulo::Rectangulo(const Rectangulo& F) {
+Rectangulo::Rectangulo(const Rectangulo& F) 
+    : miancho(std::make_unique<USHORT>(*F.miancho)), 
+      mialto(std::make_unique<USHORT>(*F.mialto)), 
+      val1(std::make_unique<int>(*F.val1)), 
+      val2(std::make_unique<int>(*F.val2)), 
+      val3(std::make_unique<int>(*F.val3)) {
     cout << "Constructor copia\n";
-    miancho = new USHORT(*(F.miancho));
-    mialto = new USHORT(*(F.mialto));
-    val1 = new int(*(F.val1));
-    val2 = new int(*(F.val2));
-    val3 = new int(*(F.val3));
 }
 
 // Destructor
-Rectangulo::~Rectangulo(){
-    cout << "Destructor\n";
-    delete miancho;
-    delete mialto;
-    delete val1;
-    delete val2;
-    delete val3;
-}
+//Rectangulo::~Rectangulo(){
+//    cout << "Destructor\n";
+//    delete miancho;
+//    delete mialto;
+//    delete val1;
+//    delete val2;
+//    delete val3;
+//}
 
 // Function to draw the rectangle using member variables
 void Rectangulo::Dibujar() {
-    val1 = new int(1); 
-    val2 = new int(4);
-    val3 = new int(8);
+    *val1 = 1; 
+    *val2 = 4;
+    *val3 = 8;
     Dibujar(*miancho, *mialto); // Use member variables
 }
 
