@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/argentina.png</file>
+        <file>img/bolivia.png</file>
+        <file>img/brasil.png</file>
+        <file>img/chile.png</file>
+        <file>img/colombia.png</file>
+        <file>img/ecuador.png</file>
+        <file>img/paraguay.png</file>
+        <file>img/peru.png</file>
+        <file>img/uruguay.png</file>
+    </qresource>
+</RCC>
